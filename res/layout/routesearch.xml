@@ -2,20 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_centerInParent="true">
+    android:layout_centerInParent="true"
+    android:orientation="vertical" >
 
-    <EditText android:id="@+id/destination"
-        android:layout_width="fill_parent"
+    <EditText
+        android:id="@+id/destin"
+        android:layout_width="252dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_weight="1"
         android:hint="目的地" />
-
+    
+    <EditText
+        android:id="@+id/start"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="起点" />
+    
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="搜索" 
-        android:onClick="doSearch"/>
+        android:text="搜索" android:onClick="search"/>
 
 </LinearLayout>
