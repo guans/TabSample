@@ -13,7 +13,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,7 +31,7 @@ import com.tencent.tencentmap.streetviewsdk.overlay.ItemizedOverlay;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApi;  
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApiListener;  
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApiResult;
-public class StreetView extends Activity implements StreetViewListener{
+public class StreetView extends FragmentActivity implements StreetViewListener{
 	/**
      * View Container
      */
@@ -109,6 +111,24 @@ public class StreetView extends Activity implements StreetViewListener{
     
     }
 
+    protected View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    	View v = inflater.inflate(R.layout.streetview_activity, container, false);
+    	mContainer = (LinearLayout)findViewById(R.id.layout);
+        mThumbImage = (ImageView)findViewById(R.id.image);
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                mThumbImage.setImageBitmap((Bitmap)msg.obj);
+            }
+        };
+        center = new GeoPoint((int)(30.519922 * 1E6), (int)(114.397054 * 1E6));
+        StreetViewShow.getInstance().showStreetView(this, center, 100, this, -170, 0);
+                        
+       
+		return v;
+       
+    
+    }
     
     //获取当前GPS位置 并定位
     public void dofollow(View s)

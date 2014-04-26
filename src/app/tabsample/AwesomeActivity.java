@@ -30,7 +30,7 @@ public class AwesomeActivity extends TabActivity {
 	private void setTabs()
 	{
 		addTab("µØÍ¼", R.drawable.tab_home, HomeActivity.class);
-		addTab("È«¾°", R.drawable.tab_search, StreetView.class);
+		addTab("È«¾°", R.drawable.tab_search, TestFragmentActivity.class);
 		addTab("ÅÄÅÄ", R.drawable.tab_search, SearchActivity.class);
 		addTab("µ¼º½", R.drawable.tab_home, RouteSearch.class);
 		addTab("ËÑË÷", R.drawable.tab_search, SearchActivity.class);

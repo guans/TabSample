@@ -1,116 +1,93 @@
 package app.tabsample;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Bitmap.Config;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import app.tabsample.HomeActivity.SimulateLocationOverlay;
-import app.tabsample.StreetView.LocListener;
-
-import com.tencent.tencentmap.lbssdk.TencentMapLBSApi;
-import com.tencent.tencentmap.lbssdk.TencentMapLBSApiListener;
-import com.tencent.tencentmap.lbssdk.TencentMapLBSApiResult;
-import com.tencent.tencentmap.mapsdk.map.PoiOverlay;
-import com.tencent.tencentmap.mapsdk.search.PoiItem;
-import com.tencent.tencentmap.mapsdk.search.PoiResults;
-import com.tencent.tencentmap.mapsdk.search.PoiSearch;
-import com.tencent.tencentmap.streetviewsdk.StreetThumbListener;
 import com.tencent.tencentmap.streetviewsdk.StreetViewListener;
 import com.tencent.tencentmap.streetviewsdk.StreetViewShow;
 import com.tencent.tencentmap.streetviewsdk.map.basemap.GeoPoint;
 import com.tencent.tencentmap.streetviewsdk.overlay.ItemizedOverlay;
 
-public class testview extends Activity implements StreetViewListener{
+import android.app.Activity;    
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Bitmap.Config;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import app.tabsample.StreetView.LocListener;
+
+
+public class TestFragmentActivity extends FragmentActivity implements StreetViewListener  {    
 	/**
      * View Container
      */
     private ViewGroup mContainer;
-
-
     private Handler mHandler;
     
     /**
      * 街景View
      */
     private View mStreetView;
-
-    
-    
-    //
+ //
     int mReqType, mReqGeoType, mReqLevel;
     LocListener mListener; // 接受回调信息
     
-    GeoPoint center=null;
-    //new GeoPoint((int)(30.519922 * 1E6), (int)(114.397054 * 1E6));
-    
+    GeoPoint center=new GeoPoint((int)(30.519922 * 1E6), (int)(114.397054 * 1E6));
 
-    
-    
-    
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_activity);
-        mContainer = (LinearLayout)findViewById(R.id.layout1);
-       
-
-        Intent intent = getIntent();
-
-		Bundle bundle = intent.getExtras();
-		
-		TestPoint test=(TestPoint)bundle.getSerializable("stview");
-		
-		center = new GeoPoint((int)(test.altitude ), (int)(test.latitude ));
-	
-		/*
-     // 接受显示全景的经纬度信息
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-            	Intent intent = getIntent();
-
-        		Bundle bundle = intent.getExtras();
-        		if (bundle != null) {
-        			
-        			TestPoint test=getIntent().getParcelableExtra("test");
-        			
-        			center = new GeoPoint((int)(test.altitude * 1E6), (int)(test.latitude * 1E6));
-        				
-        			}
-            }
-        }).start();
-        */
-                        
-        // 使用经纬度获取街景
-        // GeoPoint center = new GeoPoint((int)(31.216073 * 1E6),
-        // (int)(121.595304 * 1E6));
-        // StreetViewShow.getInstance().showStreetView(this, center, 300, this,
-        // -170, 0);
+    /** Called when the activity is first created. */    
+    public void onCreate(Bundle savedInstanceState) {    
+        super.onCreate(savedInstanceState);    
+        setContentView(R.layout.navigation);    
         
-        // 使用svid获取街景
-       // StreetViewShow.getInstance().showStreetView(this, "10011026130910162137500", this, -170, 0);
-        
-       //  center = new GeoPoint((int)(30.519922 * 1E6), (int)(114.397054 * 1E6));
+        //1111
+        mContainer = (LinearLayout)findViewById(R.id.layout2);
         StreetViewShow.getInstance().showStreetView(this, center, 100, this, -170, 0);
+            
+//        FirstFragment firstFragment=new FirstFragment();    
+//        //在Activity中通过这个与Fragment通讯    
+//        getFragmentManager().beginTransaction().add(android.R.id.content, firstFragment).commit();    
+            
+        FragmentManager fm = getSupportFragmentManager();    
+     //  addShowHideListener(R.id.btn_1, fm.findFragmentById(R.id.firstFragment));    
+       //addShowHideListener(R.id.btn_2, fm.findFragmentById(R.id.secondFragment));   
+     
         
-    
-    }
+        getFragmentManager().beginTransaction().add(android.R.id.firstFragment, firstFragment).commit();    
 
-    	
-    	
+        
+           
+    }    
+        
+    void addShowHideListener(int buttonId, final Fragment fragment) {    
+        final Button button = (Button)findViewById(buttonId);    
+        button.setOnClickListener(new OnClickListener() {    
+            public void onClick(View v) {    
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();    
+                //为Fragment设置淡入淡出效果    
+                ft.setCustomAnimations(android.R.animator.fade_in,android.R.animator.fade_out);    
+                            
+                if (fragment.isHidden()) {    
+                    ft.show(fragment);    	
+                    button.setText("隐藏");    
+                } else {    
+                    ft.hide(fragment);    
+                    button.setText("显示");    
+                }    
+                ft.commit();    
+            }    
+        });    
+    }      
+    
+    
     @Override
     protected void onDestroy() {
     	StreetViewShow.getInstance().destory();
@@ -127,7 +104,6 @@ public class testview extends Activity implements StreetViewListener{
         super.onStop();
     }
 
-    @Override
     public void onViewReturn(final View v) {
         runOnUiThread(new Runnable() {
             @Override
@@ -142,19 +118,16 @@ public class testview extends Activity implements StreetViewListener{
         });
     }
 
-    @Override
     public void onNetError() {
         // 网络错误处理
     }
 
-    @Override
     public void onDataError() {
         // 解析数据错误处理
     }
 
     CustomerOverlay overlay;
     
-    @Override
     public ItemizedOverlay getOverlay() {
         if (overlay == null) {
             ArrayList<CustomPoiData> pois = new ArrayList<CustomPoiData>();
@@ -182,7 +155,6 @@ public class testview extends Activity implements StreetViewListener{
         return BitmapFactory.decodeResource(getResources(), resId, options);
     }
 
-	@Override
 	public void onLoaded() {
 		runOnUiThread(new Runnable() {
             @Override
@@ -192,9 +164,7 @@ public class testview extends Activity implements StreetViewListener{
         });
 	}
 
-    @Override
     public void onAuthFail() {
         // 验证失败
     }
-
-}
+}   
