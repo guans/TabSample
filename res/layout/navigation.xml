@@ -1,24 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>  
+<?xml version= "1.0" encoding ="utf-8"?>  
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
-    android:orientation="vertical"   
-    android:layout_width="match_parent"   
-    android:layout_height="match_parent"  
-     android:id="@+id/layout2"
-    >  
-     
-     <fragment android:name="app.tabsample.FirstFragment"   
+    android:orientation= "vertical"  
+    android:layout_width= "match_parent"  
+    android:layout_height= "match_parent" 
+    > 
+    <LinearLayout  
+    android:orientation= "vertical"  
+    android:layout_width= "match_parent"  
+    android:layout_height= "match_parent" 
+     android:layout_weight="0.5"
+      android:id="@+id/layout2"
+    > 
+   <ToggleButton
+                   android:id ="@+id/imageButton"
+                   android:layout_width ="wrap_content"
+                   android:layout_height ="wrap_content"
+                   android:background ="@drawable/streetpoint"
+                   android:checked ="false"
+                   android:textOff =""
+                   android:textOn ="" />
+        
+ 
+</LinearLayout>
+   
+     <fragment android:name= "app.sample.streetlocation.FirstFragment"   
             android:id="@+id/firstFragment"   
             android:layout_weight="1"   
             android:layout_width="match_parent"
         android:layout_height="match_parent"  
-            />   
-
-    <fragment
-        android:id="@+id/secondFragment"
-        android:name="app.tabsample.SecondFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-              
-     
+            />  
+             
+    
 </LinearLayout>

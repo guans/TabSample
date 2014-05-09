@@ -2,6 +2,8 @@
 <resources>
     <string name="hello">Hello World!</string>
     <string name="app_name">全景导航</string>
+    <string name="search">搜索</string>
+     <string name="exit">退出</string>
 <string-array name="Spinner_Content"><item>One</item>
 <item>Two</item>
 <item>Three</item>

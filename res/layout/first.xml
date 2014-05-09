@@ -5,9 +5,8 @@
     android:orientation="vertical" >  
   
   
-    <TextView  
-        android:id="@+id/editText1"
-        android:layout_width="fill_parent"  
-        android:layout_height="wrap_content"  
-        android:text="hello,你是美女?" />  
+    <com.tencent.tencentmap.mapsdk.map.MapView
+        android:id="@+id/mymap"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </LinearLayout> 
