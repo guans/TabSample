@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import app.sample.streetlocation.HomeActivity.SimulateLocationOverlay;
+
 import app.sample.streetlocation.StreetView.LocListener;
 import app.sample.streetlocation.entity.CustomPoiData;
 import app.sample.streetlocation.entity.TestPoint;

@@ -1,0 +1,133 @@
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:gravity="center" 
+        
+        >
+
+        <TextView
+            android:id="@+id/changeStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="选择起点"
+            android:textColor="@color/black_text"
+            android:textSize="15dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/containerBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/identification_address"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+		
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dip"
+            android:gravity="center"
+            >
+             
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="起点："
+            android:textColor="@color/black_text" />
+
+           <RelativeLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+        <EditText
+            android:id="@+id/startValue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_box" 
+            />
+        
+        <ImageView 
+            android:id="@+id/editStartValue"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editor_icon"
+            />
+        </RelativeLayout>
+            
+        </LinearLayout>
+            <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+             android:layout_margin="5dip"
+            >
+           <Button
+               android:id="@+id/mylocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_mylocation" />
+            <Button 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_next"
+                android:text="附近车辆"
+                android:textColor="@color/white"
+                />
+            <Button 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_next"
+                android:text="扬招"
+                android:textColor="@color/white"
+                />
+            <Button 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_next"
+                android:text="更多"
+                android:textColor="@color/white"
+                />
+            
+              <Button 
+                android:id="@+id/rim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_next"
+                android:text="周边"
+                android:textColor="@color/white"
+                />
+              <Button 
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_next"
+                android:text="确定"
+                android:textColor="@color/white"
+                />
+            
+            </LinearLayout>
+    </LinearLayout>
+
+   
+
+     
+
+</LinearLayout>

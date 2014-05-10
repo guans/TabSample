@@ -9,4 +9,5 @@ public class Declare {
 	  public static int   end_lat=0;
 	  public static int   end_lon=0;
 	  public static String   end_name="";
+	  public static boolean   type=false;    //false Æğµã true ÖÕµã
 }

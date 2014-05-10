@@ -54,7 +54,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import app.sample.streetlocation.HomeActivity.SimulateLocationOverlay;
+
 import app.sample.streetlocation.StreetView.LocListener;
 import app.sample.streetlocation.entity.CustomPoiData;
 import app.sample.streetlocation.entity.Declare;
@@ -364,7 +364,6 @@ public class TestFragmentActivity extends FragmentActivity implements StreetView
     	
         super.onResume();
         
-        
     }
 
     @Override
@@ -372,7 +371,14 @@ public class TestFragmentActivity extends FragmentActivity implements StreetView
         super.onStop();
     }
 
-    public void onViewReturn(final View v) {
+    @Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+    	
+		super.onPause();
+	}
+
+	public void onViewReturn(final View v) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

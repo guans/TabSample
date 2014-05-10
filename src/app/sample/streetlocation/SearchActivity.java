@@ -182,6 +182,7 @@ public class SearchActivity extends Activity  {
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
+								
 							}
 							
 							suggestionList=poiResult.getCurrentPagePoiItems();
@@ -219,7 +220,7 @@ public class SearchActivity extends Activity  {
     
     
     
-    
+    //进行UI更新的主进程
     private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			if (msg.what == 0x0001) {
@@ -268,9 +269,10 @@ public class SearchActivity extends Activity  {
 				dialog.getWindow().setAttributes(params);
 				dialog.show();
 				
+			}
+			else if(msg.what == 0x0014){
 				
-				
-				
+				searchEditText.setText(key);
 				
 			}
 		};
@@ -288,26 +290,24 @@ public class SearchActivity extends Activity  {
 		builder.setTitle(style);
 		builder.setView(entryView);
 		listInfo = (ListView) entryView.findViewById(R.id.list_info);
+		if(suggestionList!=null)
+		{
 		listInfo.setAdapter(new MyBaseAdapter(SearchActivity.this,
 				suggestionList));
 		listInfo.setOnItemClickListener(new ListInfoListener());
+		}
+		else 
+			Toast.makeText(SearchActivity.this, "搜索失败,请检查您的网络",
+					Toast.LENGTH_LONG).show();		
 		return builder.create();
 	}
     
 	
-	
-	
-    
-	
+
 	// 点击LISTIFO内信息 响应
 	class ListInfoListener implements OnItemClickListener {
 		public void onItemClick(AdapterView<?> adapterView, View view,
 				int position, long id) {
-			// TODO Auto-generated method stub
-		//	System.out.println(suggestionList.get(position).key);
-			// mkSearch.suggestionSearch(suggestionList.get(position).key);
-			//mkSearch.geocode(suggestionList.get(position).key,
-			//		suggestionList.get(position).city);
 			
 			System.out.println(suggestionList.get(position).name);
 			lat=suggestionList.get(position).point.getLatitudeE6();
@@ -318,7 +318,7 @@ public class SearchActivity extends Activity  {
 	
 	
 	
-	
+	//对LISTVIEW进行赋值
 	class MyBaseAdapter extends BaseAdapter {
 		private Context context; // 接收传入的环境
 		private List<?> list; // 接收传入的List
@@ -438,7 +438,8 @@ public class SearchActivity extends Activity  {
 						}	
 						key=choice;	
 						System.out.println(key);
-						searchEditText.setText(key);
+					//	searchEditText.setText(key);
+						handler.sendEmptyMessage(0x0014);
 					
 					}
 				});
@@ -524,7 +525,8 @@ public class SearchActivity extends Activity  {
 						
 						key=choice;	
 						System.out.println(key);
-						searchEditText.setText(key);
+//						searchEditText.setText(key);
+						handler.sendEmptyMessage(0x0014);
 					}
 				});
 		builder.setPositiveButton("搜索", new DialogInterface.OnClickListener() {
@@ -614,7 +616,8 @@ public class SearchActivity extends Activity  {
 						
 						key=choice;	
 						System.out.println(key);
-						searchEditText.setText(key);
+//						searchEditText.setText(key);
+						handler.sendEmptyMessage(0x0014);
 					}
 				});
 		builder.setPositiveButton("搜索", new DialogInterface.OnClickListener() {
@@ -703,7 +706,8 @@ public class SearchActivity extends Activity  {
 						}
 						key=choice;	
 						System.out.println(key);
-						searchEditText.setText(key);
+//						searchEditText.setText(key);
+						handler.sendEmptyMessage(0x0014);
 					}
 				});
 		builder.setPositiveButton("搜索", new DialogInterface.OnClickListener() {
@@ -780,7 +784,8 @@ public class SearchActivity extends Activity  {
 						}
 						key=choice;	
 						System.out.println(key);
-						searchEditText.setText(key);
+//						searchEditText.setText(key);
+						handler.sendEmptyMessage(0x0014);
 					}
 				});
 		builder.setPositiveButton("搜索", new DialogInterface.OnClickListener() {
@@ -871,7 +876,8 @@ public class SearchActivity extends Activity  {
 						}
 						key=choice;	
 						System.out.println(key);
-						searchEditText.setText(key);
+//						searchEditText.setText(key);
+						handler.sendEmptyMessage(0x0014);
 					}
 				});
 		builder.setPositiveButton("搜索", new DialogInterface.OnClickListener() {
@@ -958,7 +964,8 @@ public class SearchActivity extends Activity  {
 						}
 						key=choice;	
 						System.out.println(key);
-						searchEditText.setText(key);
+//						searchEditText.setText(key);
+						handler.sendEmptyMessage(0x0014);
 					}
 				});
 		builder.setPositiveButton("搜索", new DialogInterface.OnClickListener() {
@@ -1037,7 +1044,8 @@ public class SearchActivity extends Activity  {
 				}
 				key=choice;	
 				System.out.println(key);
-				searchEditText.setText(key);
+//				searchEditText.setText(key);
+				handler.sendEmptyMessage(0x0014);
 			}
 		});
 		builder.setPositiveButton("搜索", new DialogInterface.OnClickListener() {
@@ -1115,7 +1123,8 @@ public class SearchActivity extends Activity  {
 				}
 				key=choice;	
 				System.out.println(key);
-				searchEditText.setText(key);
+//				searchEditText.setText(key);
+				handler.sendEmptyMessage(0x0014);
 			}
 		});
 		builder.setPositiveButton("搜索", new DialogInterface.OnClickListener() {
@@ -1196,7 +1205,8 @@ public class SearchActivity extends Activity  {
 				}
 				key=choice;	
 				System.out.println(key);
-				searchEditText.setText(key);
+//				searchEditText.setText(key);
+				handler.sendEmptyMessage(0x0014);
 			}
 		});
 		builder.setPositiveButton("搜索", new DialogInterface.OnClickListener() {

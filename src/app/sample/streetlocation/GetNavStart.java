@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import app.sample.streetlocation.RouteSearcher.MyBaseAdapter;
 import app.sample.streetlocation.SearchActivity.ListInfoListener;
+import app.sample.streetlocation.entity.Declare;
 
 public class GetNavStart extends Activity{
 	
@@ -49,7 +50,7 @@ public class GetNavStart extends Activity{
         setContentView(R.layout.navstart); 
         
         my_text_start=(EditText)this .findViewById(R.id.mystart);
-        
+        map_button=(Button)this.findViewById(R.id.map_button);
         my_button=(Button)this.findViewById(R.id.search_button);
         my_button .setOnClickListener( new View.OnClickListener(){
             
@@ -80,7 +81,11 @@ public class GetNavStart extends Activity{
 							e.printStackTrace();
 						}
 						
+						if(poiResult!=null)
+						{
 						suggestionList=poiResult.getCurrentPagePoiItems();
+						}
+						
 						handler.sendEmptyMessage(0x0001);
                         	
                         	
@@ -101,14 +106,10 @@ public class GetNavStart extends Activity{
         confirm_button .setOnClickListener( new View.OnClickListener(){
             
             public void onClick(View v) {
-              // TODO Auto-generated method stub
-            	
+              // TODO Auto-generated method stub  	
             	//获得从RouteSearch获得的信息
             	Intent intent = getIntent();
-
-        		Bundle bundle = intent.getExtras();
-            //	if (bundle != null&&bundle.getString("flag").equals("0") )
-            	{
+        		Bundle bundle = intent.getExtras();       	
             		Bundle bundle1=new Bundle();
             		if (bundle != null&&bundle.getString("flag").equals("0"))
             				 bundle1.putSerializable( "flag" , "10" );  //标志位
@@ -123,22 +124,40 @@ public class GetNavStart extends Activity{
                      Intent intent1= new Intent(GetNavStart.this , RouteSearcher. class);
                      intent1.putExtras(bundle1);
                      startActivity(intent1);
-                     finish();
+                     finish();		  	       	
+            }
+        });
+        
+        
+        
+        
+        //从地图上找导航起点
+        map_button.setOnClickListener( new View.OnClickListener(){
+            
+            public void onClick(View v) {
+              // TODO Auto-generated method stub            	
+            	//获得从地图上获得的信息
+            	Intent intent = getIntent();
+        		Bundle bundle = intent.getExtras();       	
+            		Bundle bundle1=new Bundle();
+            		if (bundle != null&&bundle.getString("flag").equals("0"))
+            		{
+            				 bundle1.putSerializable( "flag" , "导航起点" );  //标志位
+            				 Declare.type=false;
+            		}
+            		else{
+            			
             		
-        		}
-            	/*else
-            	{
-            		//表示要发送的是终点
-            		 Bundle bundle2 = new Bundle();
-                     bundle2.putSerializable( "flag" , "11" );  //标志位
-                     bundle2.putSerializable( "end_lat" , end_lat );  
-                     bundle2.putSerializable( "end_lon" , end_lon );  
-                     bundle2.putSerializable( "end_name" , end_name );  
-                     Intent intent2= new Intent(GetNavStart.this , RouteSearcher. class);
-                     intent2.putExtras(bundle2);
-                     startActivity(intent2);
-            	}*/
-            	
+            			 	bundle1.putSerializable( "flag" , "导航终点" );  //标志位
+            			 	 Declare.type=true;
+            		}
+            		
+                          
+                     Intent intent1= new Intent(GetNavStart.this , NavigateMap. class);
+                     intent1.putExtras(bundle1);
+                     startActivity(intent1);
+                     finish();
+          	
             }
         });
         

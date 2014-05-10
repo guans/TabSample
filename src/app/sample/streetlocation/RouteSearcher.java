@@ -85,6 +85,7 @@ public class RouteSearcher extends Activity  {
                        Intent intent= new Intent(RouteSearcher.this ,GetNavStart. class);
                        intent.putExtras(bundle);
                        startActivity(intent);
+                       finish();
          }
      });
 

@@ -24,7 +24,7 @@ import android.widget.TextView;
 public class AwesomeActivity extends TabActivity {
 	TabHost tabHost;
 	/** Called when the activity is first created. */
-	
+	Intent intent; //Ìø×ªÓÃµÄ
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,18 +65,33 @@ public class AwesomeActivity extends TabActivity {
 		
 		menu.add(0,1,1,R.string.search);
 		menu.add(0,2,2,R.string.exit);
+		menu.add(0,3,3,R.string.navigate);
+		menu.add(0,4,4,R.string.about);
 		return super.onCreateOptionsMenu(menu);
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-		if(item.getItemId()==2)
-			finish();
-		else if(item.getItemId()==1)
+		
+		switch(item.getItemId())
 		{
-			  Intent intent=new Intent(AwesomeActivity.this,SearchActivity.class);
+		case 1:
+			Intent intent=new Intent(AwesomeActivity.this,SearchActivity.class);
 			startActivity(intent);
+			break;
+		case 2:
+			finish(); break;
+		case 3:
+			 intent=new Intent(AwesomeActivity.this,RouteSearcher.class);
+			startActivity(intent);
+			break;
+		case 4:
+			 intent=new Intent(AwesomeActivity.this,TestFragmentActivity.class);
+			startActivity(intent);break;
+		
+		
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 	

@@ -54,6 +54,10 @@
 		<activity android:name="app.sample.streetlocation.Navigation" />
 		<activity android:name="app.sample.streetlocation.TestFragmentActivity" />
 		<activity android:name="app.sample.streetlocation.GetNavStart" />
+			<activity android:name="app.sample.streetlocation.NavigateMap" />
+			<activity android:name="app.sample.streetlocation.PositionActivity" />
+			<activity android:name="app.sample.streetlocation.entity.MyIcon" />
+			<activity android:name="app.sample.streetlocation.entity.MyIcon2" />
 		 
 		<meta-data
             android:name="TencentMapSDK"
