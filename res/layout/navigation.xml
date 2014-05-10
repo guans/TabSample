@@ -1,34 +1,40 @@
-<?xml version= "1.0" encoding ="utf-8"?>  
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
-    android:orientation= "vertical"  
-    android:layout_width= "match_parent"  
-    android:layout_height= "match_parent" 
-    > 
-    <LinearLayout  
-    android:orientation= "vertical"  
-    android:layout_width= "match_parent"  
-    android:layout_height= "match_parent" 
-     android:layout_weight="0.5"
-      android:id="@+id/layout2"
-    > 
-   <ToggleButton
-                   android:id ="@+id/imageButton"
-                   android:layout_width ="wrap_content"
-                   android:layout_height ="wrap_content"
-                   android:background ="@drawable/streetpoint"
-                   android:checked ="false"
-                   android:textOff =""
-                   android:textOn ="" />
-        
- 
-</LinearLayout>
-   
-     <fragment android:name= "app.sample.streetlocation.FirstFragment"   
-            android:id="@+id/firstFragment"   
-            android:layout_weight="1"   
-            android:layout_width="match_parent"
-        android:layout_height="match_parent"  
-            />  
-             
-    
+<?xml version= "1.0" encoding ="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:orientation="vertical" >
+
+        <ToggleButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/streetpoint"
+            android:checked="false"
+            android:textOff=""
+            android:textOn="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="4dip" >
+
+        <fragment
+            android:id="@+id/firstFragment"
+            android:name="app.sample.streetlocation.FirstFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 </LinearLayout>

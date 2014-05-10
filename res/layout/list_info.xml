@@ -6,11 +6,13 @@
     android:background="@null"
     android:orientation="vertical" >
     
-    <ListView 
+    <ListView
         android:id="@+id/list_info"
-        android:layout_height="match_parent"
         android:layout_width="fill_parent"
-        android:dividerHeight="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:cacheColorHint="#00000000"
         android:divider="#FFA500"
-        android:cacheColorHint="#00000000"/>
+        android:dividerHeight="2dp" />
+    
 </LinearLayout>

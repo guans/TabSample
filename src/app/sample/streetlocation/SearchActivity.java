@@ -61,14 +61,8 @@ public class SearchActivity extends Activity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_actvity);      
-        
-        //poiÀ—À˜≤Œ ˝…Ë÷√
-       // PoiSearch  poiSearch=new PoiSearch(this);
-        //poiSearch.setPageCapacity(15);
-        //poiSearch.setPageNumber(0);
-        
+   
        
-       // 
         
         voice = (ImageButton) this.findViewById(R.id.ht);
 		voice.setOnClickListener(new VoiceListener());
@@ -184,8 +178,9 @@ public class SearchActivity extends Activity  {
 								e.printStackTrace();
 								
 							}
-							
+							if(poiResult!=null){
 							suggestionList=poiResult.getCurrentPagePoiItems();
+							}
 							handler.sendEmptyMessage(0x0001);
 			            }
 			            
