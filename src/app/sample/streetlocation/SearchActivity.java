@@ -129,10 +129,12 @@ public class SearchActivity extends Activity  {
 					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
 			String resultString = "";
-			for (int i = 0; i < results.size(); i++) {
-				resultString += results.get(i);
-			}
-			Toast.makeText(this, resultString, 1).show();
+		/*	for (int i = 0; i < results.size(); i++) {
+				resultString += results;
+			}*/
+			//Toast.makeText(this, resultString, 1).show();
+			key=results.get(0);	
+			handler.sendEmptyMessage(0x0014);
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}

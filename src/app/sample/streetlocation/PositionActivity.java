@@ -23,7 +23,10 @@ import android.util.Log;
 import android.widget.ListView;
 import app.sample.streetlocation.GetNavStart.ListInfoListener;
 import app.sample.streetlocation.GetNavStart.MyBaseAdapter;
+import app.sample.streetlocation.constant.DatabaseManager;
+import app.sample.streetlocation.constant.POI;
 import app.sample.streetlocation.entity.Declare;
+import app.sample.streetlocation.entity.TestPoint;
 
 public class PositionActivity extends MapActivity {
 	// static BMapManager mBampMan = null;
@@ -35,6 +38,7 @@ public class PositionActivity extends MapActivity {
 	public   GeocoderSearch geocodersearcher=new GeocoderSearch(PositionActivity.this);
 	public static GeoPoint gresult;
 	private String textset;
+	public DatabaseManager databaseManager = null ;
 	// private static LocationClient mLocClient;
 
 	// public static List<FuJin> fujinList;
@@ -53,7 +57,7 @@ public class PositionActivity extends MapActivity {
 
 		mMapView.setBuiltInZoomControls(true);
 		GeoPoint ggg = new GeoPoint((int) (30.519922 * 1e6),
-				(int) (114.397054 * 1E6));// 上海体育馆
+				(int) (114.397054 * 1E6));
 		mMapView.getController().setCenter(ggg);
 
 		
@@ -73,10 +77,9 @@ public class PositionActivity extends MapActivity {
 	
 	
 	public  void getPosition(GeoPoint g) {
-//		GeoPoint g2 = new GeoPoint((int)(31.244558 * 1e6), (int)(121.506831 *
-//		1e6));
-			System.out.print(g.getLatitudeE6()+"  "+g.getLongitudeE6());
-			
+		
+		//	System.out.print(g.getLatitudeE6()+"  "+g.getLongitudeE6());
+		//	Log.i("test", "wwwwwwwwww======" + g.getLatitudeE6());
 			gresult=g;
 			if(Declare.type==false)
 			{
@@ -108,7 +111,8 @@ public class PositionActivity extends MapActivity {
 					GeoPoint geoRegeocoder=gresult;
 					ReGeocoderResult regeocoderResult=geocodersearcher.searchFromLocation(geoRegeocoder);
 					textset=regeocoderResult.poilist.get(0).name;
-					handler.sendEmptyMessage(0x0002);
+					handler.sendEmptyMessage(0x0002);			
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -117,6 +121,7 @@ public class PositionActivity extends MapActivity {
 			}
 			
 		}).start();
+		              
 		
 	}
 	

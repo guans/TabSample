@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ListView android:id="@+id/search_result_listview" android:layout_width="fill_parent"
+		android:layout_height="wrap_content"></ListView>
+	<LinearLayout style="@android:style/ButtonBar"
+	    android:id="@+id/search_result_button_bar"
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:visibility="gone"
+        android:orientation="horizontal">
+        <Button android:id="@+id/search_result_start_point_button" android:text="@string/search_result_start_point"
+            android:layout_width="0dip" android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button android:id="@+id/search_result_end_point_button" android:text="@string/search_result_end_point"
+            android:layout_width="0dip" android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button android:id="@+id/search_result_collect_button" android:text="@string/search_result_collect"
+            android:layout_width="0dip" android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button android:id="@+id/search_result_show_on_button" android:text="@string/search_result_show_on_map"
+            android:layout_width="0dip" android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

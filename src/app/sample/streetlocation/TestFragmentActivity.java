@@ -30,10 +30,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Bitmap.Config;
 import android.graphics.Paint.Style;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -51,6 +53,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -421,6 +424,38 @@ public class TestFragmentActivity extends FragmentActivity implements
 
 			}
 		});
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		
+		//在这里搞一个可以搞定方向的旋转
+		/*
+		ImageView img;
+		img=(ImageView)findViewById(R.id.bank);
+		final Bitmap bitmap=BitmapFactory.decodeResource(getResources(), R.drawable.markpoint);
+		img.setImageBitmap(bitmap);
+
+		//创建操作图片是用的matrix对象
+		Matrix matrix=new Matrix();
+		//缩放图片动作
+		matrix.postScale(1, 1);
+		//旋转图片动作
+		matrix.postRotate(30,50,100);//以坐标50，100 旋转30°
+		//创建新图片
+		Bitmap resizedBitmap=Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
+		//将上面创建的bitmap转换成drawable对象，使其可以使用在ImageView,ImageButton中
+		BitmapDrawable bmd=new BitmapDrawable(resizedBitmap);
+		img.setAdjustViewBounds(true);
+		img.setImageDrawable(bmd);
+		
+		
+		getWindow().addContentView(img,new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));*/
+		
+		Log.d("touch", StreetViewShow.getInstance().getStreetStatus()
+				.toString());
+		return super.onTouchEvent(event);
 	}
 
 	public void onAuthFail() {

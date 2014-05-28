@@ -20,9 +20,8 @@
 
         <Button
             android:id="@+id/confirm_button"
-            android:layout_width="wrap_content"
+            android:layout_width="76dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="search"
             android:text="确定" />
     </LinearLayout>
@@ -34,19 +33,25 @@
 
         <Button
             android:id="@+id/map_button"
-            android:layout_width="wrap_content"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="search"
             android:text="从地图上找" />
 
         <Button
             android:id="@+id/search_button"
-            android:layout_width="wrap_content"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="search"
             android:text="搜索" />
+
+        <Button
+            android:id="@+id/collect"
+            android:layout_width="76dp"
+            android:layout_height="wrap_content"
+            android:onClick="collect"
+            android:text="收藏" />
+
     </LinearLayout>
 
     <LinearLayout

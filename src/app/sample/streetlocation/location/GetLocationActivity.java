@@ -68,12 +68,7 @@ public class GetLocationActivity extends Activity {
 		} else {
 			status += "NETWORK 未开启";
 		}
-		/*// 弹出对话框
-		new AlertDialog.Builder(GetLocationActivity.this)
-				.setMessage("" + status).setPositiveButton("OK", null).show();
-		// 弹出Toast
-		Toast.makeText(GetLocationActivity.this, status, Toast.LENGTH_LONG)
-				.show();*/
+		
 		handler.sendEmptyMessage(0x0001);
 	}
 
@@ -89,12 +84,7 @@ public class GetLocationActivity extends Activity {
 			Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 			startActivityForResult(intent, 0); // 设置完成后返回到原来的界面
 		} else {
-			// 弹出Toast
-		/*	Toast.makeText(GetLocationActivity.this, "GPS 已经开启",
-					Toast.LENGTH_LONG).show();
-			// 弹出对话框
-			new AlertDialog.Builder(this).setMessage("GPS 已经开启")
-					.setPositiveButton("OK", null).show();*/
+			
 			handler.sendEmptyMessage(0x0002);
 		}
 	}
@@ -126,7 +116,7 @@ public class GetLocationActivity extends Activity {
 	
 	
 	
-	
+	//主线程更新UI
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			if (msg.what == 0x0001) {

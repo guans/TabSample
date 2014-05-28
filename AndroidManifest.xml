@@ -58,6 +58,8 @@
 			<activity android:name="app.sample.streetlocation.PositionActivity" />
 			<activity android:name="app.sample.streetlocation.entity.MyIcon" />
 			<activity android:name="app.sample.streetlocation.entity.MyIcon2" />
+			<activity android:name="app.sample.streetlocation.HistroicActivity" 
+			    android:theme="@android:style/Theme.Light" />
 		 
 		<meta-data
             android:name="TencentMapSDK"

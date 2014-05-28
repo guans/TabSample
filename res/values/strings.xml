@@ -6,6 +6,12 @@
      <string name="exit">退出</string>
      <string name="navigate">导航</string>
      <string name="about">关于</string>
+     <string name="search_result_start_point">起点</string>
+     <string name="search_result_end_point">终点</string>
+     <string name="search_result_collect">收藏</string>
+     <string name="search_result_show_on_map">地图上 显示</string>
+      <string name="search_result_historical">历史</string>
+       <string name="search_result_historical_clear">清除</string>
 <string-array name="Spinner_Content"><item>One</item>
 <item>Two</item>
 <item>Three</item>

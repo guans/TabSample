@@ -10,7 +10,7 @@ public class TestPoint implements Serializable{
 		latitude=0;
 	}
 	
-	public TestPoint(int alt,int lon)
+	public TestPoint(long alt,long lon)
 	{
 		altitude=alt;
 		latitude=lon;
@@ -18,31 +18,35 @@ public class TestPoint implements Serializable{
 	
 	public TestPoint(double alt,double lon)
 	{
-		altitude=(int)(alt* 1e6);
-		latitude=(int)(lon* 1e6);
+		altitude=(long)(alt* 1e6);
+		latitude=(long)(lon* 1e6);
 	}
 	
-	public void SetAlt(int alt)
+	public void SetAlt(long alt)
 	{
 		altitude=alt;
 	}
 	
-	public void SetLon(int lon)
+	public void SetLon(long lon)
 	{
 		latitude=lon;
 	}
 	/**
      * 纬度的10E6
      */
-    public int altitude;
+    public long altitude;
 
     /**
      * 经度的10E6
      */
-    public int latitude;
+    public long latitude;
     
     /**
      */
-
+    @Override
+	public String toString() {
+		  return ("经度"+ altitude+",经度"+ latitude);
+		  
+		 }
     
 }

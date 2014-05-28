@@ -30,7 +30,10 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import app.sample.streetlocation.RouteSearcher.MyBaseAdapter;
 import app.sample.streetlocation.SearchActivity.ListInfoListener;
+import app.sample.streetlocation.constant.DatabaseManager;
+import app.sample.streetlocation.constant.POI;
 import app.sample.streetlocation.entity.Declare;
+import app.sample.streetlocation.entity.TestPoint;
 
 public class GetNavStart extends Activity{
 	
@@ -41,6 +44,7 @@ public class GetNavStart extends Activity{
 	private Button my_button;
 	private Button confirm_button;
 	private Button map_button;
+	private Button collect_button;
 	private int start_lat, start_lon;
 	private String start_name, end_name;
 	private int end_lat, end_lon;
@@ -52,6 +56,7 @@ public class GetNavStart extends Activity{
         my_text_start=(EditText)this .findViewById(R.id.mystart);
         map_button=(Button)this.findViewById(R.id.map_button);
         my_button=(Button)this.findViewById(R.id.search_button);
+        collect_button=(Button)this.findViewById(R.id.collect);
         my_button .setOnClickListener( new View.OnClickListener(){
             
             public void onClick(View v) {
@@ -62,9 +67,7 @@ public class GetNavStart extends Activity{
             		new Thread(new Runnable(){
                         @Override
                         public void run() {
-                        	
-                        
-                        	
+                        	                                              	
                     	PoiSearch  poiSearch=new PoiSearch(GetNavStart.this);
 						poiSearch.setPageCapacity(15);
 						poiSearch.setPageNumber(0);
@@ -128,8 +131,16 @@ public class GetNavStart extends Activity{
             }
         });
         
-        
-        
+        //显示收藏的poi(历史记录)
+        collect_button.setOnClickListener( new View.OnClickListener(){
+            
+            public void onClick(View v) {
+            	 Intent intent1= new Intent(GetNavStart.this , HistroicActivity. class);
+                 startActivity(intent1);
+                 finish();		  	       	
+          	
+            }
+        });
         
         //从地图上找导航起点
         map_button.setOnClickListener( new View.OnClickListener(){
@@ -253,6 +264,27 @@ public class GetNavStart extends Activity{
 				start_lon=suggestionList.get(position).point.getLongitudeE6();
 				start_name=suggestionList.get(position).name;
 				my_text_start.setText(start_name);
+				
+				
+
+				
+				  /**数据库管理类*/
+		        DatabaseManager databaseManager = null;
+
+
+
+		/*创建数据库和POI表格*/
+		               databaseManager = new DatabaseManager(GetNavStart.this);
+		               databaseManager.createPoiTable();
+
+
+		        //差一条数据进去
+		             
+		              TestPoint tp= new TestPoint(start_lat,start_lon);
+		              POI poi= new POI(start_name ,tp);
+		               //pois.add(poi );     
+		               databaseManager.insertHistoricalPoi(poi);
+		               
 				handler.sendEmptyMessage(0x0002);
 			}
 		}
