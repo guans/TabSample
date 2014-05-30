@@ -264,7 +264,6 @@ public class TestFragmentActivity extends FragmentActivity implements
 		}).start();
 
 		// ¶¨µã
-
 		FirstFragment fragment = (FirstFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.firstFragment);
 

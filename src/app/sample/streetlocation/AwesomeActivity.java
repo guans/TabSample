@@ -32,6 +32,21 @@ public class AwesomeActivity extends TabActivity {
 		tabHost = getTabHost();
 		setTabs();
 	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+	}
 	private void setTabs()
 	{
 		addTab("µØÍ¼", R.drawable.tab_home, HomeActivity.class);

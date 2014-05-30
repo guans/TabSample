@@ -9,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,8 +20,10 @@ import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.sample.streetlocation.SearchActivity.ListInfoListener;
@@ -52,23 +56,33 @@ public class RouteSearcher extends Activity {
 	private Button nav_button;
 	private Button nav_map_button;
 	private Button street_nav_button;
-
+	/**导航界面中起点与终点交换*/
+	private ImageButton exchange;
 	// private RouteTest myroute;
 	// private String dest="";
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.routesearch);
+		
+		//若没有选定初始起点，则把用户位置初始化为起点
+		
+		if(Declare.start_name.equals("") && Declare.UserLat!=0)
+		{
+			Declare.start_lat=(long) (Declare.UserLat * 1E6);
+			Declare.start_lon=(long) (Declare.UserLon * 1E6);
+			Declare.start_name="我的位置";
+		}
 
+        
 		text_start = (EditText) this.findViewById(R.id.start);
 		text_end = (EditText) this.findViewById(R.id.destin);
 		nav_button = (Button) this.findViewById(R.id.nav_button);
 		nav_map_button = (Button) this.findViewById(R.id.nav_map_button);
 		street_nav_button = (Button) this.findViewById(R.id.street_nav_button);
+		
 		text_start.setOnClickListener(new View.OnClickListener() {
-
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub				
 					Bundle bundle = new Bundle();
 					bundle.putSerializable("flag", "0"); // 标志位
 					Intent intent = new Intent(RouteSearcher.this,
@@ -78,20 +92,17 @@ public class RouteSearcher extends Activity {
 				
 			}
 		});
+		
 		text_end.setOnClickListener(new View.OnClickListener() {
-
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				
+				// TODO Auto-generated method stub				
 					Bundle bundle = new Bundle();
 					bundle.putSerializable("flag", "1"); // 标志位
 					Intent intent = new Intent(RouteSearcher.this,
 							GetNavStart.class);
 					intent.putExtras(bundle);
 					startActivity(intent);
-					finish();
-				
+					finish();				
 			}
 		});
 
@@ -166,6 +177,21 @@ public class RouteSearcher extends Activity {
 			}
 		});
 
+		
+		
+		exchange=(ImageButton)this.findViewById(R.id.exchange);
+		exchange.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				String temp=text_start.getText().toString();
+				text_start.setText(text_end.getText().toString());
+				text_end.setText(temp);
+			}
+		});
+		
+		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

@@ -87,24 +87,18 @@ public class GetNavStart extends Activity{
 						if(poiResult!=null)
 						{
 						suggestionList=poiResult.getCurrentPagePoiItems();
-						}
-						
+						}						
 						handler.sendEmptyMessage(0x0001);
-                        	
-                        	
+                        	                      	
                         }
                     }).start();
-                        
-            		
-            		
-            		
+           		
             	}
             		
          }
      });
         
-        
-        
+    
         confirm_button=(Button)this.findViewById(R.id.confirm_button);
         confirm_button .setOnClickListener( new View.OnClickListener(){
             

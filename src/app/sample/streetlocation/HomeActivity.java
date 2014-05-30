@@ -194,6 +194,10 @@ public class HomeActivity extends MapActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home_activity);
 
+		PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		mWakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK,
+				"LBSAPI");
+		
 		// 获得地图对象和控制
 		mMapView = (MapView) findViewById(R.id.maptest);
 		mMapView.setBuiltInZoomControls(true); // 设置启用内置的缩放控件
@@ -425,19 +429,52 @@ public class HomeActivity extends MapActivity {
 				
 			}
 		}).start();
-
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		mMapView.setBuiltInZoomControls(true); // 设置启用内置的缩放控件
 		mMapController = mMapView.getController(); // 得到mMapView的控制权,可以用它控制和驱动平移和缩放
 		mMapController.setZoom(9);
 
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if(mWakeLock!=null)
+		{
+			try{
+		mWakeLock.release();
+			}catch(Exception e)
+			{
+				
+			}
+		}
+		// 删除定位监听器
+		TencentMapLBSApi.getInstance().removeLocationUpdate();
+	}
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		if(mWakeLock!=null)
+		{
+			try{
+		mWakeLock.release();
+			}catch(Exception e)
+			{
+				
+			}
+		}
+		// 删除定位监听器
+		TencentMapLBSApi.getInstance().removeLocationUpdate();
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		mWakeLock.acquire();
 	}
 
 	OnTapListener onTapListener = new OnTapListener() {
@@ -487,9 +524,6 @@ public class HomeActivity extends MapActivity {
 		}
 
 	}
-
-	
-	
 	
 }
 
