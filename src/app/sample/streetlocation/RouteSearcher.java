@@ -140,7 +140,6 @@ public class RouteSearcher extends Activity {
 						}
 					}
 				}).start();
-
 			}
 			}
 		});

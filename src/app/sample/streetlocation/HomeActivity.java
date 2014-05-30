@@ -67,7 +67,8 @@ import app.sample.streetlocation.entity.Declare;
 import app.sample.streetlocation.entity.TestPoint;
 
 public class HomeActivity extends MapActivity {
-
+	
+	
 	QRouteSearchResult busrouteresult = null;
 	RouteOverlay busRouteOverlay = null;
 
@@ -99,7 +100,7 @@ public class HomeActivity extends MapActivity {
 	int mReqType, mReqGeoType, mReqLevel; // 定位参数
 	RadioGroup mEditReqGeoType;
 	RadioGroup mEditReqLevel;
-
+    
 	boolean longClick = false;// 长按标志位
 
 	private List<GeoPoint> listPts;
@@ -204,10 +205,10 @@ public class HomeActivity extends MapActivity {
 		mMapController = mMapView.getController();
 
 		// 显示当前位置，先设置监听器
-		mReqGeoType = TencentMapLBSApi.GEO_TYPE_WGS84;
-		mReqLevel = TencentMapLBSApi.LEVEL_ADMIN_AREA;
+		mReqGeoType = TencentMapLBSApi.GEO_TYPE_GCJ02;
+		mReqLevel = TencentMapLBSApi.LEVEL_GEO;
 
-		mListener = new LocListener(mReqGeoType, mReqLevel, 1);
+		mListener = new LocListener(mReqGeoType, mReqLevel, TencentMapLBSApi.GEO_TYPE_GCJ02);
 
 		// 注意, manifest 文件中已配置 key
 
@@ -417,6 +418,12 @@ public class HomeActivity extends MapActivity {
 
 						GeoPoint geoSimulateLocation = new GeoPoint(
 								(int) (lat), (int) (lon));
+						
+
+						//显示带你放入list
+						
+						Declare.ptpoint.add(geoSimulateLocation);
+						
 						simuOvelay.setGeoCoords(geoSimulateLocation);
 						simuOvelay.setAccuracy(5000);
 
@@ -602,17 +609,21 @@ class MapOverlay extends ItemizedOverlay<OverlayItem> {
 	public MapOverlay(Drawable marker, Context context) {
 		super(boundCenterBottom(marker));
 		// 用给定的经纬度构造GeoPoint，单位是微度 (度 * 1E6)
-		GeoPoint p1 = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
-		GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
-		GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
+	//	GeoPoint p1 = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
+	//	GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
+	//	GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
 
+		
+		for(int i=0; i<Declare.ptpoint.size(); i++)
+		{
 		// 构造OverlayItem的三个参数依次为：item的位置，标题文本，文字片段
-		itemList.add(new OverlayItem(p1, "1", "已选中第一个点"));
-		OverlayItem itemNntDrag = new OverlayItem(p2, "2", "该点无法拖拽");
+		itemList.add(new OverlayItem(Declare.ptpoint.get(i), "1", "已选中第一个点"));
+		}
+		/*OverlayItem itemNntDrag = new OverlayItem(p2, "2", "该点无法拖拽");
 		itemNntDrag.setDragable(false);
 		itemList.add(itemNntDrag);
-		itemList.add(new OverlayItem(p3, "3", "已选中第三个点"));
-		populate(); // createItem(int)方法构造item。一旦有了数据，在调用其它方法前，首先调用这个方法
+		itemList.add(new OverlayItem(p3, "3", "已选中第三个点"));*/
+		if(Declare.ptpoint.size()>0) populate(); // createItem(int)方法构造item。一旦有了数据，在调用其它方法前，首先调用这个方法
 	}
 
 	@Override
@@ -620,6 +631,8 @@ class MapOverlay extends ItemizedOverlay<OverlayItem> {
 
 		// Projection接口用于屏幕像素点坐标系统和地球表面经纬度点坐标系统之间的变换
 		Projection projection = mapView.getProjection();
+		if(size()>0)
+		{
 		for (int index = size() - 1; index >= 0; index--) { // 遍历GeoList
 			OverlayItem overLayItem = getItem(index); // 得到给定索引的item
 
@@ -639,6 +652,7 @@ class MapOverlay extends ItemizedOverlay<OverlayItem> {
 		}
 
 		super.draw(canvas, mapView);
+		}
 	}
 
 	@Override

@@ -1,32 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/tipinfo"
-    android:paddingTop="10sp"
     android:paddingBottom="20sp"
     android:paddingLeft="10sp"
     android:paddingRight="10sp"
-    android:orientation="vertical" >
-
-    <Button
-        android:id="@+id/streetview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="全景" 
-        android:onClick="streetview"/>
+    android:paddingTop="10sp" >
 
     <TextView
         android:id="@+id/txtViewSelectTile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FF0000"
-        android:text="点中这个标注了" />
-     <TextView
+        android:layout_x="60dp"
+        android:layout_y="68dp"
+        android:text="点中这个标注了"
+        android:textColor="#FF0000" />
+
+    <TextView
         android:id="@+id/txtViewSelectSub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FF0000"
-        android:text="长按住标注可以拖动编辑坐标" />
+        android:layout_x="48dp"
+        android:layout_y="102dp"
+        android:text="长按住标注可以拖动编辑坐标"
+        android:textColor="#FF0000" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/set_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="39dp"
+        android:layout_y="56dp"
+        android:background="@drawable/btn_next"
+        android:onClick="streetview"
+        android:text="作为起点" />
+
+    <Button
+        android:id="@+id/set_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="140dp"
+        android:layout_y="54dp"
+        android:background="@drawable/btn_next"
+        android:onClick="streetview"
+        android:text="作为终点" />
+
+    <Button
+        android:id="@+id/streetview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="66dp"
+        android:layout_y="8dp"
+        android:background="@drawable/btn_next"
+        android:onClick="streetview"
+        android:text="全景" />
+
+    <Button
+        android:id="@+id/arround"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="142dp"
+        android:layout_y="10dp"
+        android:background="@drawable/btn_next"
+        android:onClick="streetview"
+        android:text="周边" />
+
+</AbsoluteLayout>

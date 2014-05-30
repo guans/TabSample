@@ -284,7 +284,7 @@ public class TestFragmentActivity extends FragmentActivity implements
 
 		}
 
-		// 隐藏小地图、显示小地图
+	/*	// 隐藏小地图、显示小地图
 		final Button but1 = (Button) this.findViewById(R.id.imageButton);
 		but1.setOnClickListener(new OnClickListener() {
 			@Override
@@ -294,7 +294,7 @@ public class TestFragmentActivity extends FragmentActivity implements
 			}
 			// 播放声音事件
 
-		});
+		});*/
 	}
 
 	@Override
@@ -327,13 +327,10 @@ public class TestFragmentActivity extends FragmentActivity implements
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-
 				mStreetView = v;
 				mContainer.addView(mStreetView);
-
 				Log.d("street", StreetViewShow.getInstance().getStreetStatus()
 						.toString());
-
 			}
 		});
 	}
@@ -376,7 +373,6 @@ public class TestFragmentActivity extends FragmentActivity implements
 		options.inPurgeable = true;
 		options.inInputShareable = true;
 		options.inScaled = false;
-
 		return BitmapFactory.decodeResource(getResources(), resId, options);
 	}
 
@@ -384,21 +380,17 @@ public class TestFragmentActivity extends FragmentActivity implements
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-
 				// TODO Auto-generated method stub
-				// 要做的事情，这里可以再次调用此Runnable对象，每次移动位置执行自己，从而实现每两秒实现一次的定时器操作
 				int latitude = StreetViewShow.getInstance().getStreetStatus().latitudeE6;
 				int langtitude = StreetViewShow.getInstance().getStreetStatus().longitudeE6;
 				String s = String.format("lon=%f,lat=%f", latitude * 1E-6,
 						langtitude * 1E-6);
 				Log.d("全景坐标", s);
-
 				FirstFragment fragment = (FirstFragment) getSupportFragmentManager()
 						.findFragmentById(R.id.firstFragment);
 				fragment.mMapController
 						.animateTo(new com.tencent.tencentmap.mapsdk.map.GeoPoint(
 								(int) (latitude), (int) (langtitude)));
-
 				if (!isdraw
 						.equals(new com.tencent.tencentmap.mapsdk.map.GeoPoint(
 								(int) (latitude), (int) (langtitude)))) {
@@ -415,12 +407,9 @@ public class TestFragmentActivity extends FragmentActivity implements
 							(int) (latitude), (int) (langtitude));
 					simuOvelay.setGeoCoords(geoSimulateLocation);
 					simuOvelay.setAccuracy(5000);
-
 					isdraw = geoSimulateLocation;
 				}
-
 				mStreetView.setVisibility(View.VISIBLE);
-
 			}
 		});
 	}
